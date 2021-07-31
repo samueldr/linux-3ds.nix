@@ -9,5 +9,14 @@ in
     arm9linuxfw = callPackage ./arm9linuxfw { };
     firm_linux_loader = callPackage ./firm_linux_loader { };
     firmtool = final.python3Packages.callPackage ./firmtool { };
+    linux = callPackage ./linux {
+      kernelPatches = with final.kernelPatches; [
+        bridge_stp_helper
+        request_key_helper
+      ];
+
+      # FIXME: provide an initramfs.
+      initramfs = "";
+    };
   };
 }
