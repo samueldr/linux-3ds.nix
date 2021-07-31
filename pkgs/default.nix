@@ -6,6 +6,7 @@ in
 {
   # Nintendo 3DS (CTR/RED product codes).
   ctr-packages = {
+    arm9linuxfw = callPackage ./arm9linuxfw { };
     firm_linux_loader = callPackage ./firm_linux_loader { };
     firmtool = final.python3Packages.callPackage ./firmtool { };
   };
