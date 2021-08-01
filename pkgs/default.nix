@@ -18,6 +18,7 @@ in
       # FIXME: provide an initramfs.
       initramfs = "";
     };
+    minimal-initramfs = callPackage ./minimal-initramfs { };
     sdcard-filesystem = callPackage ./sdcard-filesystem { };
   };
 }
