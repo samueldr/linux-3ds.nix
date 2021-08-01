@@ -19,6 +19,10 @@ in
       ];
     };
     minimal-initramfs = callPackage ./minimal-initramfs { };
+    minimal-initramfs-cpio = final.buildPackages.mkCpio {
+      name = final.ctr-packages.minimal-initramfs.name + ".cpio.gz";
+      list = ''"${final.ctr-packages.minimal-initramfs}/files.list"'';
+    };
     sdcard-filesystem = callPackage ./sdcard-filesystem { };
   };
 }
