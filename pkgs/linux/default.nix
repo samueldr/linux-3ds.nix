@@ -54,6 +54,7 @@ let
   '';
 in
 
+(
 linuxManualConfig rec {
   # Required args
   inherit stdenv lib;
@@ -62,3 +63,8 @@ linuxManualConfig rec {
   inherit src;
   inherit configfile;
 }
+).overrideAttrs({ postInstall , ... }: {
+  postInstall = postInstall + ''
+    cp .config $out/config
+  '';
+})
