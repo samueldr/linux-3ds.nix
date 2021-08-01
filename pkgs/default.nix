@@ -4,6 +4,9 @@ let
   inherit (final) callPackage;
 in
 {
+  mkCpio = callPackage ./mkCpio {
+    linux = final.linux_5_10;
+  };
   # Nintendo 3DS (CTR/RED product codes).
   ctr-packages = {
     arm9linuxfw = callPackage ./arm9linuxfw { };
