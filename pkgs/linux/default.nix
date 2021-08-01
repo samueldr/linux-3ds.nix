@@ -7,7 +7,8 @@
 , runCommandNoCC
 
 , fetchFromGitHub
-, initramfs
+/** Embed the given initramfs (cpio or files list) in the build */
+, initramfs ? ''""'' # Defaults to the literal `""` to unset the defconfig value
 , ...
 }:
 
@@ -26,8 +27,6 @@ let
   linuxConfig = import ./eval-config.nix {
     inherit pkgs;
     structuredConfig = with lib.kernel; {
-      # we currently need to embed an initramfs. *firm_linux_loader* only loads kernel and dtb (and arm9 fw).
-      # TODO: implement initramfs loading from "boot loader".
       INITRAMFS_SOURCE = freeform initramfs;
     };
   };
