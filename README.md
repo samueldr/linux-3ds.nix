@@ -1,5 +1,5 @@
-Linux 3DS with Nix
-==================
+Linux-3DS.nix
+=============
 
 What's this??
 -------------
