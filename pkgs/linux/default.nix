@@ -60,6 +60,9 @@ linuxManualConfig rec {
 
   version = "5.11.0-rc1";
   inherit src;
+  kernelPatches = [
+    { patch = ./0001-WIP-ARM-dts-Provide-initrd-location-in-chosen.patch; }
+  ];
   inherit configfile;
 }
 ).overrideAttrs({ postInstall , ... }: {
