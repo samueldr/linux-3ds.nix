@@ -23,6 +23,8 @@ in
       name = final.ctr-packages.minimal-initramfs.name + ".cpio.gz";
       list = ''"${final.ctr-packages.minimal-initramfs}/files.list"'';
     };
-    sdcard-filesystem = callPackage ./sdcard-filesystem { };
+    sdcard-filesystem = callPackage ./sdcard-filesystem {
+      initramfs = final.ctr-packages.minimal-initramfs-cpio;
+    };
   };
 }
