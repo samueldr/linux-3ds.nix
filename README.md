@@ -30,6 +30,14 @@ partial skeleton structure to copy to your SD card,
 
 And *somehow* copy this to your SD card. (Read the tips section.)
 
+Then, when the 3DS boots, holds `[START]`. This will show the *Luma3DS
+chainloader* interface. Select `firm_linux_loader` and launch it.
+
+The display will glitch out a bit for a few seconds, then the top panel will
+show the console logs, and the bottom panel a basic on-screen-keyboard.
+
+*Have fun!*
+
 
 Tips
 ----
