@@ -7,4 +7,4 @@ set -u
 HOST="$1"
 
 result=$(NIX_PATH= nix-build -A sdcard-filesystem)
-echo "mirror --no-perms --reverse --verbose ${result} /" | lftp "$HOST"
+echo "mirror --transfer-all --no-perms --reverse --verbose ${result} /" | lftp "$HOST"

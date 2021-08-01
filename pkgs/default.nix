@@ -4,6 +4,9 @@ let
   inherit (final) callPackage;
 in
 {
+  mkCpio = callPackage ./mkCpio {
+    linux = final.linux_5_10;
+  };
   # Nintendo 3DS (CTR/RED product codes).
   ctr-packages = {
     arm9linuxfw = callPackage ./arm9linuxfw { };
@@ -14,9 +17,14 @@ in
         bridge_stp_helper
         request_key_helper
       ];
-      initramfs = ''"${final.ctr-packages.minimal-initramfs}/files.list"'';
     };
     minimal-initramfs = callPackage ./minimal-initramfs { };
-    sdcard-filesystem = callPackage ./sdcard-filesystem { };
+    minimal-initramfs-cpio = final.buildPackages.mkCpio {
+      name = final.ctr-packages.minimal-initramfs.name + ".cpio.gz";
+      list = ''"${final.ctr-packages.minimal-initramfs}/files.list"'';
+    };
+    sdcard-filesystem = callPackage ./sdcard-filesystem {
+      initramfs = final.ctr-packages.minimal-initramfs-cpio;
+    };
   };
 }

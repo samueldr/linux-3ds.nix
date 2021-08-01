@@ -1,0 +1,44 @@
+From e07aff1c48ec24b3c42768c44569bceeefac704c Mon Sep 17 00:00:00 2001
+From: Samuel Dionne-Riel <samuel@dionne-riel.com>
+Date: Sun, 1 Aug 2021 16:20:56 -0400
+Subject: [PATCH] [WIP] ARM: dts: Provide initrd location in chosen
+
+I'm not sure the location can cause issues down the road, especially for
+New 3DS.
+---
+ arch/arm/boot/dts/nintendo3ds_ctr.dts | 4 ++++
+ arch/arm/boot/dts/nintendo3ds_ktr.dts | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/arch/arm/boot/dts/nintendo3ds_ctr.dts b/arch/arm/boot/dts/nintendo3ds_ctr.dts
+index 545d7becc9d03..ded7dfb04f78b 100644
+--- a/arch/arm/boot/dts/nintendo3ds_ctr.dts
++++ b/arch/arm/boot/dts/nintendo3ds_ctr.dts
+@@ -38,6 +38,10 @@ cpu@1 {
+ 
+ 	chosen {
+ 		bootargs = "keep_bootcon fbcon=rotate:1";
++		// At the end of the fcram
++		// XXX: find better location
++		linux,initrd-start = <0x27800000>;
++		linux,initrd-end = <0x28000000>; // 8 MiB
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/nintendo3ds_ktr.dts b/arch/arm/boot/dts/nintendo3ds_ktr.dts
+index 0ff4cabde180a..ee60b0d56df73 100644
+--- a/arch/arm/boot/dts/nintendo3ds_ktr.dts
++++ b/arch/arm/boot/dts/nintendo3ds_ktr.dts
+@@ -50,5 +50,9 @@ cpu@3 {
+ 
+ 	chosen {
+ 		bootargs = "keep_bootcon fbcon=rotate:1";
++		// At the end of the CTR fcram
++		// XXX: find better location
++		linux,initrd-start = <0x27800000>;
++		linux,initrd-end = <0x28000000>; // 8 MiB
+ 	};
+ };
+-- 
+2.29.2
+
