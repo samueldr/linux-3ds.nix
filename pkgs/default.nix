@@ -14,9 +14,7 @@ in
         bridge_stp_helper
         request_key_helper
       ];
-
-      # FIXME: provide an initramfs.
-      initramfs = "";
+      initramfs = ''"${final.ctr-packages.minimal-initramfs}/files.list"'';
     };
     minimal-initramfs = callPackage ./minimal-initramfs { };
     sdcard-filesystem = callPackage ./sdcard-filesystem { };
